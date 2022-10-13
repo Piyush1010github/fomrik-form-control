@@ -1,7 +1,7 @@
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import FormikControl from "../FormikControl";
-
+import { data }from './User'
 const RegistrationForm = () => {
   const initialValues = {
     first_name: "",
@@ -13,8 +13,9 @@ const RegistrationForm = () => {
     gender: "",
     radioOption: "",
     skills: [],
+    userData:data
   };
-
+  
   const validationSchema = Yup.object({
     first_name: Yup.string().required("Required"),
     last_name: Yup.string().required("Required"),
@@ -126,6 +127,13 @@ const RegistrationForm = () => {
             label="Your skillset"
             name="skills"
             options={checkboxOptions}
+          />
+
+        <FormikControl
+            control="fieldArray"
+            label="User List"
+            name="userData"
+            data={formik.values.userData}
           />
 
           <button type="submit">Submit</button>
